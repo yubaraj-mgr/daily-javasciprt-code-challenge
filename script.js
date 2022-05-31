@@ -44,3 +44,48 @@ Note: for this kata y isn't considered a vowel.
 function disemvowel(str) {
   return str.replace(/[aeiou]/gi, "");
 }
+
+/*
+  3. Write a function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed (Just like the name of this Kata). Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.
+
+Examples: spinWords( "Hey fellow warriors" ) => returns "Hey wollef sroirraw" spinWords( "This is a test") => returns "This is a test" spinWords( "This is another test" )=> returns "This is rehtona test"
+  */
+
+//Answer
+function spinWords(string) {
+  //TODO Have fun :)
+  const toArray = string.split(" ");
+  let finalArray = [];
+  toArray.forEach((item) => {
+    if (item.length < 5) {
+      finalArray.push(item);
+    } else {
+      finalArray.push(item.split("").reverse().join(""));
+    }
+  });
+  return finalArray.join(" ");
+}
+
+/*
+  Digital root is the recursive sum of all the digits in a number.
+
+Given n, take the sum of the digits of n. If that value has more than one digit, continue reducing in this way until a single-digit number is produced. The input will be a non-negative integer.
+
+Examples
+    16  -->  1 + 6 = 7
+   942  -->  9 + 4 + 2 = 15  -->  1 + 5 = 6
+132189  -->  1 + 3 + 2 + 1 + 8 + 9 = 24  -->  2 + 4 = 6
+493193  -->  4 + 9 + 3 + 1 + 9 + 3 = 29  -->  2 + 9 = 11  -->  1 + 1 = 2
+   */
+
+//Answer
+function digital_root(n) {
+  // ...
+  const array = Array.from(String(n), Number);
+  const sum = array.reduce((a, b) => a + b);
+  if (sum >= 10) {
+    return digital_root(sum);
+  } else {
+    return sum;
+  }
+}
