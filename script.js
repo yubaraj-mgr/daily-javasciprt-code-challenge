@@ -67,7 +67,7 @@ function spinWords(string) {
 }
 
 /*
-  Digital root is the recursive sum of all the digits in a number.
+  4. Digital root is the recursive sum of all the digits in a number.
 
 Given n, take the sum of the digits of n. If that value has more than one digit, continue reducing in this way until a single-digit number is produced. The input will be a non-negative integer.
 
@@ -88,4 +88,23 @@ function digital_root(n) {
   } else {
     return sum;
   }
+}
+
+/*
+6. Your goal in this kata is to implement a difference function, which subtracts one list from another and returns the result.
+
+It should remove all values from list a, which are present in list b keeping their order.
+
+arrayDiff([1,2],[1]) == [2]
+If a value is present in b, all of its occurrences must be removed from the other:
+
+arrayDiff([1,2,2,2,3],[2]) == [1,3] 
+*/
+
+//Answer
+function arrayDiff(a, b) {
+  let c = a.filter((item) => {
+    return !b.includes(item);
+  });
+  return c;
 }
