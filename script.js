@@ -169,3 +169,25 @@ function likes(names) {
       );
   }
 }
+
+/*
+8.
+Your task is to make a function that can take any non-negative integer as an argument and return it with its digits in descending order. Essentially, rearrange the digits to create the highest possible number.
+
+Examples:
+Input: 42145 Output: 54421
+
+Input: 145263 Output: 654321
+
+Input: 123456789 Output: 987654321
+*/
+
+// Answer
+function descendingOrder(n) {
+  //...
+  const toString = String(n);
+  const toArray = Array.from(toString, Number);
+  const sortArray = toArray.sort((a, b) => a - b);
+  const reverseArray = sortArray.reverse();
+  return parseInt(reverseArray.join(""));
+}
