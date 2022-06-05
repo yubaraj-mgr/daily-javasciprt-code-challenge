@@ -192,7 +192,7 @@ function descendingOrder(n) {
   return parseInt(reverseArray.join(""));
 }
 
-/*
+/* 9
 Write a function that takes an integer as input, and returns the number of bits that are equal to one in the binary representation of that number. You can guarantee that input is non-negative.
 
 Example: The binary representation of 1234 is 10011010010, so the function should return 5 in this case
@@ -212,7 +212,7 @@ var countBits = function (n) {
   return sum;
 };
 
-/*
+/*c 10
 Write a function to find the longest common prefix string amongst an array of strings.
 
 If there is no common prefix, return an empty string "".
@@ -241,16 +241,71 @@ Submissions
 4,078,414
 */
 var longestCommonPrefix = function (strs) {
-  let i = 0;
-  while (i < strs[0].length) {
-    let char = strs[0][i];
-    for (let s = 1; s < strs.length; s++) {
-      if (strs[s][i] != char) {
-        return strs[s].slice(0, i);
-      }
-    }
+  if (strs.length === 1) {
+    return strs[0];
+  }
+
+  strs.sort();
+
+  let prefix = "",
+    end = strs.length - 1,
+    i = 0;
+
+  while (
+    i < strs[0].length &&
+    i < strs[end].length &&
+    strs[0][i] === strs[end][i]
+  ) {
+    prefix += strs[0][i];
     i++;
   }
 
-  return strs[0];
+  return prefix;
+};
+
+/*11
+Input: accounts = [[1,2,3],[3,2,1]]
+Output: 6
+Explanation:
+1st customer has wealth = 1 + 2 + 3 = 6
+2nd customer has wealth = 3 + 2 + 1 = 6
+Both customers are considered the richest with a wealth of 6 each, so return 6.
+Example 2:
+
+Input: accounts = [[1,5],[7,3],[3,5]]
+Output: 10
+Explanation: 
+1st customer has wealth = 6
+2nd customer has wealth = 10 
+3rd customer has wealth = 8
+The 2nd customer is the richest with a wealth of 10.
+Example 3:
+
+Input: accounts = [[2,8,7],[7,1,3],[1,9,5]]
+Output: 17
+ 
+
+Constraints:
+
+m == accounts.length
+n == accounts[i].length
+1 <= m, n <= 50
+1 <= accounts[i][j] <= 100
+Accepted
+304,723
+Submissions
+341,942
+
+*/
+
+/**
+ * @param {number[][]} accounts
+ * @return {number}
+ */
+var maximumWealth = function (accounts) {
+  const maxValue = [];
+  accounts.map((eachAccounts, index) => {
+    maxValue.push(eachAccounts.reduce((acc, current) => acc + current));
+  });
+  return Math.max(...maxValue);
 };
